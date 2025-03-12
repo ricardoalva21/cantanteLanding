@@ -1,10 +1,69 @@
 import React from "react";
 import { Typography, Box, Grid, Divider } from "@mui/material";
 
+// Componente reutilizable para los embeds de Spotify
+const SpotifyEmbed = ({ title, src, height }) => (
+  <Box sx={{ mb: 2, mx: { xs: 5, sm: 6, md: 2, lg: 1 } }}>
+    <Typography variant="h6" gutterBottom>
+      {title}
+    </Typography>
+    <iframe
+      title={title}
+      src={src}
+      width="100%"
+      height={height}
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+      style={{ border: "none", borderRadius: "12px",boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.1)", }}
+    ></iframe>
+  </Box>
+);
+
+// Componente reutilizable para los embeds de YouTube
+const YouTubeEmbed = ({ title, src }) => (
+  <Box sx={{ mb: 10,mt:10, mx: { xs: 2, sm: 6, md: 2, lg: 1 } }}>
+    <Typography variant="h6" gutterBottom>
+      {title}
+    </Typography>
+    <iframe
+      width="100%"
+      height="315"
+      src={src}
+      title="YouTube video player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      style={{ border: "none", borderRadius: "12px",boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.1)", }}
+      allowFullScreen
+    ></iframe>
+  </Box>
+);
+
+// Componente reutilizable para los iconos de plataformas
+const PlatformIcon = ({ href, src, alt }) => (
+  <Grid item>
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      <Box
+        component="img"
+        src={src}
+        alt={alt}
+        sx={{
+          width: 120,
+          height: 120,
+          objectFit: "contain",
+          marginTop: "0.5rem",
+          transition: "transform 0.3s ease-in-out",
+          "&:hover": {
+            transform: "scale(1.1)",
+          },
+        }}
+      />
+    </a>
+  </Grid>
+);
+
 const Musica = ({ id }) => {
   return (
     <Box
-      id={id} // Agrego el id para la navegación
+      id={id}
       sx={{
         backgroundImage: "url(/images/fondo_blanco.webp)",
         backgroundSize: "cover",
@@ -47,7 +106,7 @@ const Musica = ({ id }) => {
           variant="h3"
           gutterBottom
           align="center"
-          sx={{ fontWeight: "bold", mb: 4 }}
+          sx={{ fontWeight: "bold", mb: 4, textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",}}
         >
           Discografía
         </Typography>
@@ -59,59 +118,34 @@ const Musica = ({ id }) => {
             <Typography
               variant="h4"
               gutterBottom
-              sx={{ fontWeight: "bold", mb: 2 }}
+              sx={{ fontWeight: "bold", m: 2 }}
             >
-              Álbumes y Sencillos
+              Sencillos
             </Typography>
+            <Divider sx={{ my: 4, backgroundColor: "white" }} />
+
             <Box sx={{ mb: 4 }}>
-              {/* Aquí irían los embeds de Spotify */}
-              <Box sx={{ mb: 2 }}>
-                <Typography variant="h6" gutterBottom>
-                  Último lanzamiento
-                </Typography>
-                {/* Embed de Spotify (ejemplo) */}
-                <iframe
-                  title="spotify-embed-1"
-                  src="https://open.spotify.com/embed/album/4LfAiYP1a21k357yWiFDjs?utm_source=generator"
-                  width="100%"
-                  height="352"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  style={{ border: "none", borderRadius: "12px" }} // Elimina el borde y añade bordes redondeados
-                ></iframe>
-              </Box>
-              {/* spotify little1 */}
-              <Box sx={{ mb: 2 }}>
-                <Typography variant="h6" gutterBottom>
-                  Lanzamiento anterior
-                </Typography>
-                {/* Embed de Spotify (ejemplo) */}
-                <iframe
-                  title="spotify-embed-2"
-                  src="https://open.spotify.com/embed/track/4zbs7iCTVYk2QiEnnCoRGI?utm_source=generator"
-                  width="100%"
-                  height="152"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  style={{ border: "none", borderRadius: "12px" }} // Elimina el borde y añade bordes redondeados
-                ></iframe>
-              </Box>
-              {/* spotify little2 */}
-              <Box sx={{ mb: 2 }}>
-                <Typography variant="h6" gutterBottom>
-                  Lanzamiento anterior
-                </Typography>
-                {/* Embed de Spotify (ejemplo) */}
-                <iframe
-                  title="spotify-embed-2"
-                  src="https://open.spotify.com/embed/track/44Rr3RIWe95QnOeYc23sUl?utm_source=generator"
-                  width="100%"
-                  height="152"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  style={{ border: "none", borderRadius: "12px" }} // Elimina el borde y añade bordes redondeados
-                ></iframe>
-              </Box>
+              {/* Embed de Spotify */}
+              <SpotifyEmbed
+                title="Último lanzamiento (2025)"
+                src="https://open.spotify.com/embed/album/4LfAiYP1a21k357yWiFDjs?utm_source=generator"
+                height="352"
+              />
+              <SpotifyEmbed
+                title="No me Rendire (2017)"
+                src="https://open.spotify.com/embed/track/4zbs7iCTVYk2QiEnnCoRGI?utm_source=generator"
+                height="152"
+              />
+              <SpotifyEmbed
+                title="Yo te alabare (2016)"
+                src="https://open.spotify.com/embed/track/44Rr3RIWe95QnOeYc23sUl?utm_source=generator"
+                height="152"
+              />
+              <SpotifyEmbed
+                title="Yo Siento Gozo (2017)"
+                src="https://open.spotify.com/embed/track/6ZvKWNHnx8SO1iQXlDFs82?utm_source=generator"
+                height="152"
+              />
             </Box>
           </Grid>
 
@@ -120,42 +154,63 @@ const Musica = ({ id }) => {
             <Typography
               variant="h4"
               gutterBottom
-              sx={{ fontWeight: "bold", mb: 2 }}
+              sx={{ mt: 10, fontWeight: "bold", mb: 2, ml: 2 }}
             >
               Videos Musicales
             </Typography>
+            <Divider sx={{ my: 4, backgroundColor: "white" }} />
+
             <Box sx={{ mb: 4 }}>
-              {/* Aquí irían los embeds de YouTube */}
-              <Box sx={{ mb: 2 }}>
-                <Typography variant="h6" gutterBottom>
-                  Yo Siento Gozo (2019)
-                </Typography>
-                {/* Embed de YouTube (ejemplo) */}
-                <iframe
-                  width="100%"
-                  height="315"
-                  src="https://www.youtube.com/embed/pbH8x3Mll0E?si=stQVKJsvzQdkppRD"
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  style={{ border: "none", borderRadius: "12px" }} // Elimina el borde y añade bordes redondeados
-                  allowFullScreen
-                ></iframe>
-              </Box>
-              <Box sx={{ mb: 2 }}>
-                <Typography variant="h6" gutterBottom>
-                  Blanco y Negro
-                </Typography>
-                {/* Embed de YouTube (ejemplo) */}
-                <iframe
-                  width="100%"
-                  height="315"
-                  src="https://www.youtube.com/embed/icPKTEZ4H3o?si=TdsJLLhs7dSoTlU5"
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  style={{ border: "none", borderRadius: "12px" }} // Elimina el borde y añade bordes redondeados
-                  allowFullScreen
-                ></iframe>
-              </Box>
+              {/* Embed de YouTube */}
+              <YouTubeEmbed
+                title="Yo Siento Gozo (2019)"
+                src="https://www.youtube.com/embed/pbH8x3Mll0E?si=stQVKJsvzQdkppRD"
+              />
+              <YouTubeEmbed
+                title="Blanco y Negro (2017)"
+                src="https://www.youtube.com/embed/icPKTEZ4H3o?si=TdsJLLhs7dSoTlU5"
+              />
+            </Box>
+          </Grid>
+
+          {/* Enlace a todos los videos en YouTube */}
+          <Grid m={"auto"} item>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                flexDirection: {
+                  xs: "column",
+                  sm: "column",
+                  md: "row",
+                  lg: "row",
+                },
+              }}
+            >
+              <Typography sx={{ m: 2, fontWeight: "bold" }} variant="h3">
+                Todos los videos acá:
+              </Typography>
+              <a
+                href="https://www.youtube.com/@yoyjara3573"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Box
+                  component="img"
+                  src="/images/youtube_Logo.svg"
+                  alt="YouTube"
+                  sx={{
+                    width: 120,
+                    height: 120,
+                    objectFit: "contain",
+                    marginTop: "0.5rem",
+                    transition: "transform 0.3s ease-in-out",
+                    "&:hover": {
+                      transform: "scale(1.1)",
+                    },
+                  }}
+                />
+              </a>
             </Box>
           </Grid>
         </Grid>
@@ -163,7 +218,7 @@ const Musica = ({ id }) => {
         {/* Separador visual */}
         <Divider sx={{ my: 4, backgroundColor: "white" }} />
 
-        {/* Sección de enlaces a plataformas */}
+        {/* Enlaces a plataformas */}
         <Typography
           variant="h4"
           gutterBottom
@@ -172,63 +227,33 @@ const Musica = ({ id }) => {
         >
           Escucha en todas las plataformas
         </Typography>
-        <Grid container spacing={2} justifyContent="center">
-          {/* Icono y enlace a Spotify */}
-          <Grid item>
-            <a
-              href="https://open.spotify.com/intl-es/artist/5mdBiXJlONCRpzhHIKYJwR?si=Rb7bws73ReSittJgAjp1fw"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="/images/logo_spotify.png" // Ruta local del logo de Spotify
-                alt="Spotify"
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  objectFit: "contain",
-                }}
-              />
-            </a>
-          </Grid>
-
-          {/* Icono y enlace a Apple Music */}
-          <Grid item>
-            <a
-              href="https://music.apple.com/cr/artist/yoy-jara/1180808962"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="/images/Apple_Music_Logo.png" // Ruta local del logo de Apple Music
-                alt="Apple Music"
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  objectFit: "contain",
-                }}
-              />
-            </a>
-          </Grid>
-
-          {/* Icono y enlace a Amazon Music */}
-          <Grid item>
-            <a
-              href="https://music.amazon.com/artists/B01N0Q0J4S/yoy-jara?marketplaceId=ART4WZ8MWBX2Y&musicTerritory=CR&ref=dm_sh_CUGhxVkC0Oz4JuHHj9GUqdByL"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="/images/Amazon_Music_Logo.svg" // Ruta local del logo de Amazon Music
-                alt="Amazon Music"
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  objectFit: "contain",
-                }}
-              />
-            </a>
-          </Grid>
+        <Grid
+          sx={{
+            mt: -6,
+            display: "flex",
+            alignItems: "center",
+            flexDirection: { xs: "column", sm: "row", md: "row", lg: "row" },
+          }}
+          container
+          spacing={2}
+          justifyContent="center"
+        >
+          {/* Iconos de plataformas */}
+          <PlatformIcon
+            href="https://open.spotify.com/intl-es/artist/5mdBiXJlONCRpzhHIKYJwR?si=Rb7bws73ReSittJgAjp1fw"
+            src="/images/logo_spotify.png"
+            alt="Spotify"
+          />
+          <PlatformIcon
+            href="https://music.apple.com/cr/artist/yoy-jara/1180808962"
+            src="/images/Apple_Music_Logo.png"
+            alt="Apple Music"
+          />
+          <PlatformIcon
+            href="https://music.amazon.com/artists/B01N0Q0J4S/yoy-jara?marketplaceId=ART4WZ8MWBX2Y&musicTerritory=CR&ref=dm_sh_CUGhxVkC0Oz4JuHHj9GUqdByL"
+            src="/images/Amazon_Music_Logo.svg"
+            alt="Amazon Music"
+          />
         </Grid>
       </Box>
     </Box>
