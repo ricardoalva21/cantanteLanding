@@ -14,14 +14,18 @@ const SpotifyEmbed = ({ title, src, height }) => (
       height={height}
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
       loading="lazy"
-      style={{ border: "none", borderRadius: "12px",boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.1)", }}
+      style={{
+        border: "none",
+        borderRadius: "12px",
+        boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.1)",
+      }}
     ></iframe>
   </Box>
 );
 
 // Componente reutilizable para los embeds de YouTube
 const YouTubeEmbed = ({ title, src }) => (
-  <Box sx={{ mb: 10,mt:10, mx: { xs: 2, sm: 6, md: 2, lg: 1 } }}>
+  <Box sx={{ mb: 10, mt: 10, mx: { xs: 2, sm: 6, md: 2, lg: 1 } }}>
     <Typography variant="h6" gutterBottom>
       {title}
     </Typography>
@@ -31,7 +35,11 @@ const YouTubeEmbed = ({ title, src }) => (
       src={src}
       title="YouTube video player"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      style={{ border: "none", borderRadius: "12px",boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.1)", }}
+      style={{
+        border: "none",
+        borderRadius: "12px",
+        boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.1)",
+      }}
       allowFullScreen
     ></iframe>
   </Box>
@@ -106,7 +114,11 @@ const Musica = ({ id }) => {
           variant="h3"
           gutterBottom
           align="center"
-          sx={{ fontWeight: "bold", mb: 4, textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",}}
+          sx={{
+            fontWeight: "bold",
+            mb: 4,
+            textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
+          }}
         >
           Discografía
         </Typography>
@@ -229,7 +241,7 @@ const Musica = ({ id }) => {
         </Typography>
         <Grid
           sx={{
-            mt: -6,
+            mt: { xs: -4, sm: -4, md: -6, lg: -6 },
             display: "flex",
             alignItems: "center",
             flexDirection: { xs: "column", sm: "row", md: "row", lg: "row" },
