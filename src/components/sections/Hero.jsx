@@ -58,7 +58,7 @@ const Hero = () => {
             objectFit: "cover", // Cubre el contenedor sin distorsionar el video
           }}
         >
-          <source src="/videos/background1_hero.mp4" type="video/mp4" />
+          <source src="/videos/background1_hero3.mp4" type="video/mp4" />
           Tu navegador no soporta videos HTML5.
         </Box>
       </Box>

@@ -5,80 +5,98 @@ import {
   Button,
   IconButton,
   Box,
-  Menu,
-  MenuItem,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const Header = () => {
-  const [anchorEl, setAnchorEl] = useState(null); // Estado para el menú desplegable
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-  // Maneja la apertura del menú desplegable
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+  // Alternar el estado del menú hamburguesa
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+      return;
+    }
+    setDrawerOpen(open);
   };
 
-  // Maneja el cierre del menú desplegable
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  // Navega a la sección correspondiente con scroll suave
+  // Navega a la sección con scroll suave
   const handleNavigation = (id) => {
     const section = document.getElementById(id);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" }); // Scroll suave
+      section.scrollIntoView({ behavior: "smooth" });
     }
-    handleMenuClose(); // Cierra el menú después de la navegación
+    setDrawerOpen(false); // Cierra el menú después de navegar
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "black" }}>
+    <AppBar position="absolute" sx={{ backgroundColor: "transparent", boxShadow: "none" }}>
       <Toolbar>
         {/* Logo */}
         <Box sx={{ flexGrow: 1 }}>
           <img
-            src="/images/logo.png" // Ruta desde la carpeta public
+            src="/images/logo.png"
             alt="Logo del artista"
-            style={{ height: "70px" }} // Ajusta el tamaño del logo
+            style={{ height: "70px" }}
           />
         </Box>
 
         {/* Menú de navegación (oculto en móviles) */}
         <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 4 }}>
-          <Button color="inherit" onClick={() => handleNavigation("bio")}>
-            Biografía
-          </Button>
-          <Button color="inherit" onClick={() => handleNavigation("musica")}>
-            Música
-          </Button>
-          <Button color="inherit" onClick={() => handleNavigation("contacto")}>
-            Contacto
-          </Button>
+          {["biografia", "musica", "contacto"].map((id) => (
+            <Button
+              key={id}
+              color="inherit"
+              onClick={() => handleNavigation(id)}
+              sx={{
+                transition: "0.3s",
+                "&:hover": {
+                  backgroundColor: "primary.main",
+                  color: "black",
+                  borderRadius: "8px",
+                },
+              }}
+            >
+              {id.charAt(0).toUpperCase() + id.slice(1)}
+            </Button>
+          ))}
         </Box>
 
-        {/* Menú hamburguesa (solo en móviles) */}
+        {/* Menú hamburguesa (Drawer en móviles) */}
         <IconButton
           color="inherit"
           sx={{ display: { xs: "block", sm: "none" } }}
-          onClick={handleMenuOpen}
+          onClick={toggleDrawer(true)}
         >
           <MenuIcon />
         </IconButton>
 
-        {/* Menú desplegable (solo en móviles) */}
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}
-          sx={{ display: { xs: "block", sm: "none" } }}
-        >
-          <MenuItem onClick={() => handleNavigation("bio")}>Biografía</MenuItem>
-          <MenuItem onClick={() => handleNavigation("musica")}>Música</MenuItem>
-          <MenuItem onClick={() => handleNavigation("contacto")}>
-            Contacto
-          </MenuItem>
-        </Menu>
+        <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+          <Box
+            sx={{
+              width: 250,
+              height: "100%",
+              backgroundColor: "rgba(0, 0, 0, 0.5)", // Mayor transparencia
+              backdropFilter: "blur(6px)", // Suaviza el desenfoque
+              color: "white",
+              borderRadius: "0 16px 16px 0", // Más curvo
+            }}
+          >
+            <List>
+              {["bio", "musica", "contacto"].map((id) => (
+                <ListItem key={id} disablePadding>
+                  <ListItemButton onClick={() => handleNavigation(id)}>
+                    <ListItemText primary={id.charAt(0).toUpperCase() + id.slice(1)} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+        </Drawer>
       </Toolbar>
     </AppBar>
   );

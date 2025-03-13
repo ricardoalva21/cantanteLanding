@@ -1,67 +1,75 @@
 import React from "react";
 import { Typography, Box, Grid, Divider } from "@mui/material";
+import { motion } from "framer-motion";
 
-// Componente reutilizable para los embeds de Spotify
-const SpotifyEmbed = ({ title, src, height }) => (
-  <Box sx={{ mb: 2, mx: { xs: 5, sm: 6, md: 2, lg: 1 } }}>
-    <Typography variant="h6" gutterBottom>
-      {title}
-    </Typography>
-    <iframe
-      title={title}
-      src={src}
-      width="100%"
-      height={height}
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy"
-      style={{
-        border: "none",
-        borderRadius: "12px",
-        boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.1)",
-      }}
-    ></iframe>
-  </Box>
-);
+// effectos para Motion
+const slideInLeft = {
+  hidden: { opacity: 0, transform: "translateX(-50px)" }, // Usa transform en lugar de x
+  visible: {
+    opacity: 1,
+    transform: "translateX(0)",
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+const fadeInUp = {
+  hidden: { opacity: 0.2, transform: "translateY(50px)" }, // En vez de 0, un inicio más gradual
+  visible: {
+    opacity: 1,
+    transform: "translateY(0)",
+    transition: {
+      duration: 0.6, // Un poco más de duración para Safari
+      ease: [0.25, 1, 0.5, 1], // Bezier curve más natural en Safari
+      delay: 0.1, // Pequeño delay para evitar cortes en Safari
+    },
+  },
+};
+
+// Importar SpotifyEmbed usando lazy loading
+const SpotifyEmbed = React.lazy(() => import("../common/spotifyEmbed"));
 
 // Componente reutilizable para los embeds de YouTube
 const YouTubeEmbed = ({ title, src }) => (
-  <Box sx={{ mb: 10, mt: 10, mx: { xs: 2, sm: 6, md: 2, lg: 1 } }}>
-    <Typography variant="h6" gutterBottom>
-      {title}
-    </Typography>
-    <iframe
-      width="100%"
-      height="315"
-      src={src}
-      title="YouTube video player"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      style={{
-        border: "none",
-        borderRadius: "12px",
-        boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.1)",
-      }}
-      allowFullScreen
-    ></iframe>
-  </Box>
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    variants={slideInLeft}
+    viewport={{ once: true, amount: 0.2 }}
+    style={{ overflow: "hidden", willChange: "transform" }} // Optimización
+  >
+    <Box sx={{ mb: 10, mt: 10, mx: { xs: 2, sm: 6, md: 2, lg: 1 } }}>
+      <Typography variant="h6" gutterBottom>
+        {title}
+      </Typography>
+      <iframe
+        width="100%"
+        height="315"
+        src={src}
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        style={{
+          border: "none",
+          borderRadius: "12px",
+          boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.1)",
+        }}
+        allowFullScreen
+      ></iframe>
+    </Box>
+  </motion.div>
 );
-
 // Componente reutilizable para los iconos de plataformas
 const PlatformIcon = ({ href, src, alt }) => (
   <Grid item>
     <a href={href} target="_blank" rel="noopener noreferrer">
-      <Box
-        component="img"
+      <motion.img
         src={src}
         alt={alt}
-        sx={{
+        whileHover={{ scale: 1.1, rotate: 1 }}
+        transition={{ type: "spring", stiffness: 300 }}
+        style={{
           width: 120,
           height: 120,
           objectFit: "contain",
           marginTop: "0.5rem",
-          transition: "transform 0.3s ease-in-out",
-          "&:hover": {
-            transform: "scale(1.1)",
-          },
         }}
       />
     </a>
@@ -110,18 +118,21 @@ const Musica = ({ id }) => {
         }}
       >
         {/* Título principal */}
-        <Typography
-          variant="h3"
-          gutterBottom
-          align="center"
-          sx={{
-            fontWeight: "bold",
-            mb: 4,
-            textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
-          }}
-        >
-          Discografía
-        </Typography>
+        <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          {" "}
+          <Typography
+            variant="h3"
+            gutterBottom
+            align="center"
+            sx={{
+              fontWeight: "bold",
+              mb: 4,
+              textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            Discografía
+          </Typography>
+        </motion.div>
 
         {/* Grid para el contenido */}
         <Grid container spacing={4}>
@@ -207,19 +218,22 @@ const Musica = ({ id }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Box
-                  component="img"
+                <motion.img
                   src="/images/youtube_Logo.svg"
-                  alt="YouTube"
-                  sx={{
+                  alt="Youtube"
+                  whileHover={{ scale: 1.1, rotate: 1 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 15,
+                    ease: "easeOut",
+                  }} // Mejor transición
+                  style={{
                     width: 120,
                     height: 120,
                     objectFit: "contain",
                     marginTop: "0.5rem",
-                    transition: "transform 0.3s ease-in-out",
-                    "&:hover": {
-                      transform: "scale(1.1)",
-                    },
+                    willChange: "transform", // Optimización
                   }}
                 />
               </a>
@@ -235,7 +249,11 @@ const Musica = ({ id }) => {
           variant="h4"
           gutterBottom
           align="center"
-          sx={{ fontWeight: "bold", mb: 4 }}
+          sx={{
+            fontWeight: "bold",
+            mb: 4,
+            mt: { xs: 4, sm: 4, md: 10, lg: 15, xl: 15 },
+          }}
         >
           Escucha en todas las plataformas
         </Typography>

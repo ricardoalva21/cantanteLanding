@@ -2,10 +2,12 @@ import React, { Suspense } from "react";
 import Header from "./components/sections/Header";
 import Hero from "./components/sections/Hero";
 
+
 // Carga dinámica de las secciones
 const Bio = React.lazy(() => import("./components/sections/Bio"));
 const Musica = React.lazy(() => import("./components/sections/Musica"));
 const Contacto = React.lazy(() => import("./components/sections/Contacto"));
+const Footer = React.lazy(() => import("./components/sections/Footer"));
 
 function App() {
   return (
@@ -26,6 +28,9 @@ function App() {
           <Contacto id="contacto" />
         </Suspense>
       </main>
+      <Suspense fallback={<div>Cargando Footer</div>}>
+        <Footer />
+      </Suspense>
     </>
   );
 }
