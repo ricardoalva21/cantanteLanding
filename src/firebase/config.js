@@ -4,12 +4,13 @@ import { getFirestore } from 'firebase/firestore';
 import { getMessaging } from 'firebase/messaging';
 
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_AUTH_DOMAIN",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "TU_STORAGE_BUCKET",
-  messagingSenderId: "TU_MESSAGING_SENDER_ID",
-  appId: "TU_APP_ID",
+  apiKey: "AIzaSyCq65r5japSYMjN7DkYrSxzqLVylgU4H7k",
+  authDomain: "yoyjara-landing.firebaseapp.com",
+  projectId: "yoyjara-landing",
+  storageBucket: "yoyjara-landing.firebasestorage.app",
+  messagingSenderId: "516822987033",
+  appId: "1:516822987033:web:ab3d360e6732b880441588",
+  measurementId: "G-5HKKYFLRDR"
 };
 
 const app = initializeApp(firebaseConfig);

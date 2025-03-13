@@ -58,7 +58,10 @@ const Hero = () => {
             objectFit: "cover", // Cubre el contenedor sin distorsionar el video
           }}
         >
-          <source src="/videos/background1_hero3.mp4" type="video/mp4" />
+          <source 
+            src="https://firebasestorage.googleapis.com/v0/b/yoyjara-landing.firebasestorage.app/o/background1_hero3.mp4?alt=media&token=27738003-f4fa-4725-80c2-e85173016449" 
+            type="video/mp4" 
+          />
           Tu navegador no soporta videos HTML5.
         </Box>
       </Box>

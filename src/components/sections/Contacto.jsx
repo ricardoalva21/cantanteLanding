@@ -48,7 +48,10 @@ const Contacto = ({ id }) => {
             objectFit: "cover", // Cubre el contenedor sin distorsionar el video
           }}
         >
-          <source src="/videos/background0_hero.mp4" type="video/mp4" />
+          <source
+            src="https://firebasestorage.googleapis.com/v0/b/yoyjara-landing.firebasestorage.app/o/background0_hero.mp4?alt=media&token=35facd0d-0dbf-4d5a-b349-6e5e08a5c782"
+            type="video/mp4"
+          />
           Tu navegador no soporta videos HTML5.
         </Box>
       </Box>
