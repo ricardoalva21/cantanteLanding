@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react"; // Importa useEffect
 import { Box, Typography, Button, useMediaQuery } from "@mui/material";
 
 const Hero = () => {
@@ -11,6 +11,16 @@ const Hero = () => {
       musicaSection.scrollIntoView({ behavior: "smooth" }); // Desplazamiento suave
     }
   };
+
+  // Usa useEffect para manejar la reproducción del video
+  useEffect(() => {
+    const video = document.getElementById("background-video");
+    if (video) {
+      video.play().catch((error) => {
+        console.error("Error al reproducir el video:", error);
+      });
+    }
+  }, []); // El array vacío asegura que esto solo se ejecute una vez al montar el componente
 
   return (
     <Box
@@ -45,6 +55,7 @@ const Hero = () => {
       >
         {/* Video de fondo */}
         <video
+          id="background-video" // Agrega un ID para poder seleccionar el video
           preload="metadata" // En lugar de auto
           autoPlay
           loop
