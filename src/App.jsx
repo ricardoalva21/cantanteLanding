@@ -19,7 +19,7 @@ function App() {
       <main>
         <Hero />
         <Suspense fallback={<div>Cargando Biografía...</div>}>
-          <Bio id="bio" />
+          <Bio id="biografia" />
         </Suspense>
         <Suspense fallback={<div>Cargando Música...</div>}>
           <Musica id="musica" />

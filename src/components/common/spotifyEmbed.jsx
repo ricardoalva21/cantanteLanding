@@ -26,7 +26,7 @@ const SpotifyEmbed = ({ title, src, height }) => (
     viewport={{ once: true, amount: 0.3 }}
   >
     <Box
-      sx={{ mb: 2, mx: { xs: 5, sm: 6, md: 2, lg: 1 } }}
+      sx={{ mb: 3, mx: { xs: 5, sm: 6, md: 2, lg: 1 } }}
       style={{ willChange: "transform" }} // Solo en el Box, no en motion.div
     >
       <Typography variant="h6" gutterBottom>

@@ -63,13 +63,19 @@ const PlatformIcon = ({ href, src, alt }) => (
       <motion.img
         src={src}
         alt={alt}
-        whileHover={{ scale: 1.1, rotate: 1 }}
-        transition={{ type: "spring", stiffness: 300 }}
+        whileHover={{ scale: 1.1, rotate: 2 }} // Un poco más de rotación para que sea visible
+        transition={{
+          type: "spring",
+          stiffness: 200, // Menos brusco
+          damping: 15, // Hace que la animación sea más suave
+          mass: 0.5, // Ajusta la inercia
+        }}
         style={{
           width: 120,
           height: 120,
           objectFit: "contain",
           marginTop: "0.5rem",
+          willChange: "transform", // Mejora la renderización
         }}
       />
     </a>
@@ -116,6 +122,7 @@ const Musica = ({ id }) => {
           width: "100%",
           maxWidth: "1200px",
           pb: 10,
+          pt: 10,
         }}
       >
         {/* Título principal */}
@@ -129,6 +136,7 @@ const Musica = ({ id }) => {
               fontWeight: "bold",
               mb: 4,
               textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
+              pb: 4,
             }}
           >
             Discografía
@@ -142,7 +150,7 @@ const Musica = ({ id }) => {
             <Typography
               variant="h4"
               gutterBottom
-              sx={{ fontWeight: "bold", m: 2 }}
+              sx={{ fontWeight: "bold", m: 2, pb: 2 }}
             >
               Sencillos
             </Typography>
@@ -178,7 +186,7 @@ const Musica = ({ id }) => {
             <Typography
               variant="h4"
               gutterBottom
-              sx={{ mt: 10, fontWeight: "bold", mb: 2, ml: 2 }}
+              sx={{ mt: 10, fontWeight: "bold", mb: 2, ml: 2, pb: 2 }}
             >
               Videos Musicales
             </Typography>
