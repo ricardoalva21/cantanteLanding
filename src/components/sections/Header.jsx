@@ -18,7 +18,10 @@ const Header = () => {
 
   // Alternar el estado del menú hamburguesa
   const toggleDrawer = (open) => (event) => {
-    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
     setDrawerOpen(open);
@@ -34,10 +37,13 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="absolute" sx={{ backgroundColor: "transparent", boxShadow: "none" }}>
+    <AppBar
+      position="absolute"
+      sx={{ backgroundColor: "transparent", boxShadow: "none",px:{xs:1,sm:2,md:4,lg:8, xl:10} }}
+    >
       <Toolbar>
         {/* Logo */}
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1,pt:1}}>
           <img
             src="/images/logo.png"
             alt="Logo del artista"
@@ -90,7 +96,9 @@ const Header = () => {
               {["bio", "musica", "contacto"].map((id) => (
                 <ListItem key={id} disablePadding>
                   <ListItemButton onClick={() => handleNavigation(id)}>
-                    <ListItemText primary={id.charAt(0).toUpperCase() + id.slice(1)} />
+                    <ListItemText
+                      primary={id.charAt(0).toUpperCase() + id.slice(1)}
+                    />
                   </ListItemButton>
                 </ListItem>
               ))}

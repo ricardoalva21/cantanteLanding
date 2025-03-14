@@ -92,6 +92,7 @@ const Musica = ({ id }) => {
         alignItems: "center",
         color: "white",
         position: "relative",
+        // maxWidth:"100vh",
       }}
     >
       {/* Overlay oscuro */}
@@ -114,7 +115,7 @@ const Musica = ({ id }) => {
           zIndex: 2,
           width: "100%",
           maxWidth: "1200px",
-          p: 8,
+          pb: 10,
         }}
       >
         {/* Título principal */}

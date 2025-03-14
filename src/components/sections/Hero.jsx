@@ -46,9 +46,11 @@ const Hero = () => {
         {/* Video de fondo */}
         <Box
           component="video"
+          preload="auto"
           autoPlay
           loop
           muted
+          playsInline
           sx={{
             position: "absolute",
             top: 0,
@@ -58,9 +60,9 @@ const Hero = () => {
             objectFit: "cover", // Cubre el contenedor sin distorsionar el video
           }}
         >
-          <source 
-            src="https://firebasestorage.googleapis.com/v0/b/yoyjara-landing.firebasestorage.app/o/background1_hero3.mp4?alt=media&token=27738003-f4fa-4725-80c2-e85173016449" 
-            type="video/mp4" 
+          <source
+            src="https://firebasestorage.googleapis.com/v0/b/yoyjara-landing.firebasestorage.app/o/background1_hero3_Optimus.mp4?alt=media&token=549ec625-39b3-4c0f-a47d-9bcd692e857c"
+            type="video/mp4"
           />
           Tu navegador no soporta videos HTML5.
         </Box>
@@ -84,7 +86,7 @@ const Hero = () => {
         <Typography variant="h2" gutterBottom>
           Bienvenidos
         </Typography>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5"  gutterBottom>
           Descubre la música de Yoy Jara, y más.
         </Typography>
         <Button
