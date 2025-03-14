@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, Button, useMediaQuery } from "@mui/material";
 
 const Hero = () => {
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const [videoFailed, setVideoFailed] = useState(false);
 
   const handleListenNow = () => {
     const musicaSection = document.getElementById("musica");
@@ -13,24 +14,33 @@ const Hero = () => {
 
   useEffect(() => {
     const video = document.getElementById("background-video");
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
     if (video) {
+      const handleError = () => {
+        console.error("Error al cargar el video");
+        setVideoFailed(true);
+        video.style.display = "none";
+        document.body.style.backgroundImage =
+          "url(/images/hero_background.webp)";
+      };
+
       const handleLoadedMetadata = () => {
         video.play().catch((error) => {
           console.error("Error al reproducir el video:", error);
           if (isIOS) {
-            // Si falla en iOS, muestra una imagen de fondo
-            video.style.display = "none";
-            document.body.style.backgroundImage = "url('fallback-image.jpg')";
+            handleError();
           }
         });
       };
 
       video.addEventListener("loadedmetadata", handleLoadedMetadata);
+      video.addEventListener("error", handleError);
 
       return () => {
         video.removeEventListener("loadedmetadata", handleLoadedMetadata);
+        video.removeEventListener("error", handleError);
       };
     }
   }, []);
@@ -50,43 +60,45 @@ const Hero = () => {
         overflow: "hidden",
       }}
     >
-      <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          aspectRatio: "16/9",
-          "@supports not (aspect-ratio: 16/9)": {
-            paddingTop: "56.25%",
-          },
-          zIndex: -1,
-        }}
-      >
-        <video
-          id="background-video"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          style={{
+      {!videoFailed && (
+        <Box
+          sx={{
             position: "absolute",
             top: 0,
             left: 0,
             width: "100%",
             height: "100%",
-            objectFit: "cover",
+            aspectRatio: "16/9",
+            "@supports not (aspect-ratio: 16/9)": {
+              paddingTop: "56.25%",
+            },
+            zIndex: -1,
           }}
         >
-          <source
-            src="https://firebasestorage.googleapis.com/v0/b/yoyjara-landing.firebasestorage.app/o/background1_hero3_Optimus.mp4?alt=media&token=549ec625-39b3-4c0f-a47d-9bcd692e857c"
-            type="video/mp4"
-          />
-          Tu navegador no soporta videos HTML5.
-        </video>
-      </Box>
+          <video
+            id="background-video"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          >
+            <source
+              src="https://firebasestorage.googleapis.com/v0/b/yoyjara-landing.firebasestorage.app/o/background1_hero3_Optimus.mp4?alt=media&token=549ec625-39b3-4c0f-a47d-9bcd692e857c"
+              type="video/mp4"
+            />
+            Tu navegador no soporta videos HTML5.
+          </video>
+        </Box>
+      )}
 
       <Box
         sx={{
