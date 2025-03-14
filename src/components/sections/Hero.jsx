@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Typography, Button, useMediaQuery } from "@mui/material";
 
 const Hero = () => {
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-  const [videoFailed, setVideoFailed] = useState(false);
 
   const handleListenNow = () => {
     const musicaSection = document.getElementById("musica");
@@ -11,39 +10,6 @@ const Hero = () => {
       musicaSection.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  useEffect(() => {
-    const video = document.getElementById("background-video");
-    const isIOS =
-      /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
-    if (video) {
-      const handleError = () => {
-        console.error("Error al cargar el video");
-        setVideoFailed(true);
-        video.style.display = "none";
-        document.body.style.backgroundImage =
-          "url(/images/hero_background.webp)";
-      };
-
-      const handleLoadedMetadata = () => {
-        video.play().catch((error) => {
-          console.error("Error al reproducir el video:", error);
-          if (isIOS) {
-            handleError();
-          }
-        });
-      };
-
-      video.addEventListener("loadedmetadata", handleLoadedMetadata);
-      video.addEventListener("error", handleError);
-
-      return () => {
-        video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-        video.removeEventListener("error", handleError);
-      };
-    }
-  }, []);
 
   return (
     <Box
@@ -58,9 +24,12 @@ const Hero = () => {
         color: "white",
         textAlign: "center",
         overflow: "hidden",
+        backgroundImage: isSmallScreen ? "url(/images/hero_background.webp)" : "none", // Imagen en pantallas pequeñas
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
-      {!videoFailed && (
+      {!isSmallScreen && ( // Video en pantallas grandes
         <Box
           sx={{
             position: "absolute",
@@ -68,10 +37,6 @@ const Hero = () => {
             left: 0,
             width: "100%",
             height: "100%",
-            aspectRatio: "16/9",
-            "@supports not (aspect-ratio: 16/9)": {
-              paddingTop: "56.25%",
-            },
             zIndex: -1,
           }}
         >
