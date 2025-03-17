@@ -39,11 +39,15 @@ const Header = () => {
   return (
     <AppBar
       position="absolute"
-      sx={{ backgroundColor: "transparent", boxShadow: "none",px:{xs:1,sm:2,md:4,lg:8, xl:10} }}
+      sx={{
+        backgroundColor: "transparent",
+        boxShadow: "none",
+        px: { xs: 1, sm: 2, md: 4, lg: 8, xl: 10 },
+      }}
     >
       <Toolbar>
         {/* Logo */}
-        <Box sx={{ flexGrow: 1,pt:1}}>
+        <Box sx={{ flexGrow: 1, pt: 1 }}>
           <img
             src="/images/logo.png"
             alt="Logo del artista"
@@ -81,20 +85,48 @@ const Header = () => {
           <MenuIcon />
         </IconButton>
 
-        <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+        <Drawer
+          anchor="right"
+          open={drawerOpen}
+          onClose={toggleDrawer(false)}
+          sx={{
+            backgroundColor: "rgba(0, 0, 0, 0.1)",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <Box
             sx={{
               width: 250,
               height: "100%",
-              backgroundColor: "rgba(0, 0, 0, 0.5)", // Mayor transparencia
+              backgroundColor: "rgba(0, 0, 0, 0.8)", // Mayor transparencia
               backdropFilter: "blur(6px)", // Suaviza el desenfoque
               color: "white",
-              borderRadius: "0 16px 16px 0", // Más curvo
+
+              // borderRadius: "25px 0 0 0", // Más curvo
             }}
           >
-            <List>
-              {["bio", "musica", "contacto"].map((id) => (
-                <ListItem key={id} disablePadding>
+            <List
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "center",
+                gap: 3,
+              }}
+            >
+              {["biografia", "musica", "contacto"].map((id) => (
+                <ListItem
+                  sx={{
+                    transition: "0.3s",
+                    "&:hover": {
+                      backgroundColor: "primary.main",
+                      color: "black",
+                      // borderRadius: "8px",
+                    },
+                  }}
+                  key={id}
+                  disablePadding
+                >
                   <ListItemButton onClick={() => handleNavigation(id)}>
                     <ListItemText
                       primary={id.charAt(0).toUpperCase() + id.slice(1)}
