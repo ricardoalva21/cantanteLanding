@@ -1,0 +1,35 @@
+{
+  "bio": {
+    "title": "YOY JARA",
+    "subtitle": "Salmista, músico y ministro.",
+    "paragraph1": "Nació el 9 de marzo de 1981, en San José, Costa Rica. <br /> Nieto de pastores, Carlos Cascante Álvarez y Socorro Sánchez Sánchez, fundadores de la primera iglesia Cristiana \"<strong>Jesús es el Camino</strong>\" en Granadilla de Curridabat, en la capital de Costa Rica. Desde los 7 años, Yoy Jara inició su ministerio en la alabanza y adoración al Señor, tocando guitarra en la iglesia de sus abuelos.",
+    "paragraph2": "Con el paso de los años, enfrentó dificultades familiares, incluyendo el divorcio de sus padres, lo que lo llevó a asumir el rol de sustento para su hogar. A pesar de los desafíos, nunca perdió la fe y siguió desarrollando su ministerio musical, confiando en que Dios tenía un propósito mayor para él.",
+    "paragraph3": "Su carrera musical lo ha llevado a escenarios importantes dentro de la música cristiana. Ha participado en eventos como <strong>Expolit</strong> (Miami, 2016-2018), <strong>Expocristiana</strong> (México, 2017), <strong>Premios Arca</strong> (Venezuela, 2019) y <strong>Latinoamérica Despierta</strong> (Argentina, 2019). En 2025, fue galardonado en los <strong>Monster Music Awards</strong> (México) como mejor artista urbano fusión.",
+    "paragraph4": "Su primer EP, \"<strong>Confía</strong>\", fue grabado en 2016 en los estudios de <strong>Sony Music</strong> en México, con la producción de <strong>Giorgio Torelli</strong>, quien ha trabajado con artistas como <strong>OV7</strong> y <strong>Kava</strong>. El EP incluyó cuatro temas: \"<strong>Blanco y Negro</strong>\", \"<strong>Confía</strong>\", \"<strong>Yo te alabaré</strong>\" y \"<strong>Carta para ti</strong>\". Posteriormente, en 2017 y 2018, lanzó sencillos como \"<strong>No me rendiré</strong>\", \"<strong>Tú eres mi Dios</strong>\", \"<strong>Siento la Gloria de Dios</strong>\" y \"<strong>Yo siento Gozo</strong>\", bajo la producción de <strong>Juan José Molina</strong> en Costa Rica.",
+    "paragraph5": "En 2019, estrenó el video musical de \"<strong>Yo Siento Gozo</strong>\", producido por <strong>Gatsby Producciones</strong> y el <strong>Instituto Internacional de Jubileo Costa Rica</strong>. En abril de 2020, lanzó un nuevo video musical de \"<strong>Confía</strong>\", producido por Primula Films en Costa Rica. Su más reciente lanzamiento, \"<strong>Gracias Señor</strong>\", está disponible en todas las plataformas digitales desde marzo de 2025."
+  },
+  "header": {
+    "biografia": "Biografía",
+    "musica": "Música",
+    "contacto": "Contacto"
+  },
+  "hero": {
+    "welcome": "Bienvenidos",
+    "subtitle": "Descubre la música de Yoy Jara, y más.",
+    "button": "Escuchar ahora"
+  },
+  "musica": {
+    "title": "Discografía",
+    "singles": "Sencillos",
+    "videos": "Videos Musicales",
+    "allVideos": "Todos los videos acá:",
+    "platforms": "Escucha en todas las plataformas"
+  },
+  "contacto": {
+    "title": "Contáctanos",
+    "button": "Envía un correo a Yoy Jara"
+  },
+  "footer": {
+   "copyright": "© {{year}} Yoy Jara. Todos los derechos reservados."
+  }
+}

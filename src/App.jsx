@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import Header from "./components/sections/Header";
 import Hero from "./components/sections/Hero";
+import './i18n/i18n';
 
 
 // Carga dinámica de las secciones

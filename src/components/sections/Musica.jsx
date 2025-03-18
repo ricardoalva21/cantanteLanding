@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography, Box, Grid, Divider } from "@mui/material";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next"; // Importa useTranslation
 
 // effectos para Motion
 const slideInLeft = {
@@ -56,6 +57,7 @@ const YouTubeEmbed = ({ title, src }) => (
     </Box>
   </motion.div>
 );
+
 // Componente reutilizable para los iconos de plataformas
 const PlatformIcon = ({ href, src, alt }) => (
   <Grid item>
@@ -83,6 +85,8 @@ const PlatformIcon = ({ href, src, alt }) => (
 );
 
 const Musica = ({ id }) => {
+  const { t } = useTranslation(); // Usa useTranslation para acceder a las traducciones
+
   return (
     <Box
       id={id}
@@ -98,7 +102,6 @@ const Musica = ({ id }) => {
         alignItems: "center",
         color: "white",
         position: "relative",
-        // maxWidth:"100vh",
       }}
     >
       {/* Overlay oscuro */}
@@ -127,7 +130,6 @@ const Musica = ({ id }) => {
       >
         {/* Título principal */}
         <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-          {" "}
           <Typography
             variant="h3"
             gutterBottom
@@ -139,7 +141,7 @@ const Musica = ({ id }) => {
               pb: 4,
             }}
           >
-            Discografía
+            {t("musica.title")} {/* Usa la traducción para "Discografía" */}
           </Typography>
         </motion.div>
 
@@ -152,7 +154,7 @@ const Musica = ({ id }) => {
               gutterBottom
               sx={{ fontWeight: "bold", m: 2, pb: 2 }}
             >
-              Sencillos
+              {t("musica.singles")} {/* Usa la traducción para "Sencillos" */}
             </Typography>
             <Divider sx={{ my: 4, backgroundColor: "white" }} />
 
@@ -188,7 +190,8 @@ const Musica = ({ id }) => {
               gutterBottom
               sx={{ mt: 10, fontWeight: "bold", mb: 2, ml: 2, pb: 2 }}
             >
-              Videos Musicales
+              {t("musica.videos")}{" "}
+              {/* Usa la traducción para "Videos Musicales" */}
             </Typography>
             <Divider sx={{ my: 4, backgroundColor: "white" }} />
 
@@ -220,7 +223,8 @@ const Musica = ({ id }) => {
               }}
             >
               <Typography sx={{ m: 2, fontWeight: "bold" }} variant="h3">
-                Todos los videos acá:
+                {t("musica.allVideos")}{" "}
+                {/* Usa la traducción para "Todos los videos acá:" */}
               </Typography>
               <a
                 href="https://www.youtube.com/@yoyjara3573"
@@ -264,7 +268,8 @@ const Musica = ({ id }) => {
             mt: { xs: 4, sm: 4, md: 10, lg: 15, xl: 15 },
           }}
         >
-          Escucha en todas las plataformas
+          {t("musica.platforms")}{" "}
+          {/* Usa la traducción para "Escucha en todas las plataformas" */}
         </Typography>
         <Grid
           sx={{

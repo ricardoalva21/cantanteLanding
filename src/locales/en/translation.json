@@ -1,0 +1,35 @@
+{
+  "bio": {
+    "title": "YOY JARA",
+    "subtitle": "Psalmist, musician, and minister.",
+    "paragraph1": "Born on March 9, 1981, in San José, Costa Rica. <br /> Grandson of pastors, Carlos Cascante Álvarez and Socorro Sánchez Sánchez, founders of the first Christian church \"<strong>Jesús es el Camino</strong>\" in Granadilla de Curridabat, in the capital of Costa Rica. From the age of 7, Yoy Jara began his ministry in praise and worship to the Lord, playing guitar in his grandparents' church.",
+    "paragraph2": "Over the years, he faced family difficulties, including his parents' divorce, which led him to take on the role of providing for his household. Despite the challenges, he never lost faith and continued to develop his music ministry, trusting that God had a greater purpose for him.",
+    "paragraph3": "His music career has taken him to important stages within Christian music. He has participated in events such as <strong>Expolit</strong> (Miami, 2016-2018), <strong>Expocristiana</strong> (Mexico, 2017), <strong>Premios Arca</strong> (Venezuela, 2019), and <strong>Latinoamérica Despierta</strong> (Argentina, 2019). In 2025, he was awarded at the <strong>Monster Music Awards</strong> (Mexico) as the best urban fusion artist.",
+    "paragraph4": "His first EP, \"<strong>Confía</strong>\", was recorded in 2016 at <strong>Sony Music</strong> studios in Mexico, with production by <strong>Giorgio Torelli</strong>, who has worked with artists such as <strong>OV7</strong> and <strong>Kava</strong>. The EP included four tracks: \"<strong>Blanco y Negro</strong>\", \"<strong>Confía</strong>\", \"<strong>Yo te alabaré</strong>\", and \"<strong>Carta para ti</strong>\". Later, in 2017 and 2018, he released singles such as \"<strong>No me rendiré</strong>\", \"<strong>Tú eres mi Dios</strong>\", \"<strong>Siento la Gloria de Dios</strong>\", and \"<strong>Yo siento Gozo</strong>\", produced by <strong>Juan José Molina</strong> in Costa Rica.",
+    "paragraph5": "In 2019, he premiered the music video for \"<strong>Yo Siento Gozo</strong>\", produced by <strong>Gatsby Producciones</strong> and the <strong>Instituto Internacional de Jubileo Costa Rica</strong>. In April 2020, he released a new music video for \"<strong>Confía</strong>\", produced by Primula Films in Costa Rica. His latest release, \"<strong>Gracias Señor</strong>\", has been available on all digital platforms since March 2025."
+  },
+  "header": {
+    "biografia": "Bio",
+    "musica": "Music",
+    "contacto": "Contact"
+  },
+  "hero": {
+    "welcome": "Welcome",
+    "subtitle": "Discover the music of Yoy Jara, and more.",
+    "button": "Listen Now"
+  },
+  "musica": {
+    "title": "Discography",
+    "singles": "Singles",
+    "videos": "Music Videos",
+    "allVideos": "All videos here:",
+    "platforms": "Listen on all platforms"
+  },
+  "contacto": {
+    "title": "Contact Us",
+    "button": "Send an email to Yoy Jara"
+  },
+  "footer": {
+    "copyright": "© {{year}} Yoy Jara. All rights reserved."
+  }
+}

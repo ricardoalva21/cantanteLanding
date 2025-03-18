@@ -1,8 +1,10 @@
 import React from "react";
 import { Box, Typography, Button, useMediaQuery } from "@mui/material";
+import { useTranslation } from "react-i18next"; // Importa useTranslation
 
 const Hero = () => {
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const { t } = useTranslation(); // Usa useTranslation para acceder a las traducciones
 
   const handleListenNow = () => {
     const musicaSection = document.getElementById("musica");
@@ -24,7 +26,9 @@ const Hero = () => {
         color: "white",
         textAlign: "center",
         overflow: "hidden",
-        backgroundImage: isSmallScreen ? "url(/images/hero_background.webp)" : "none", // Imagen en pantallas pequeñas
+        backgroundImage: isSmallScreen
+          ? "url(/images/hero_background.webp)"
+          : "none", // Imagen en pantallas pequeñas
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -79,10 +83,11 @@ const Hero = () => {
 
       <Box sx={{ position: "relative", zIndex: 1, p: 4 }}>
         <Typography variant="h2" gutterBottom>
-          Bienvenidos
+          {t("hero.welcome")} {/* Usa la traducción para "Bienvenidos" */}
         </Typography>
         <Typography variant="h5" gutterBottom>
-          Descubre la música de Yoy Jara, y más.
+          {t("hero.subtitle")}{" "}
+          {/* Usa la traducción para "Descubre la música..." */}
         </Typography>
         <Button
           variant="contained"
@@ -90,7 +95,7 @@ const Hero = () => {
           size="large"
           onClick={handleListenNow}
         >
-          Escuchar ahora
+          {t("hero.button")} {/* Usa la traducción para "Escuchar ahora" */}
         </Button>
       </Box>
     </Box>

@@ -1,29 +1,28 @@
 import React from "react";
 import { Typography, Box, Button } from "@mui/material";
+import { useTranslation } from "react-i18next"; // Importa useTranslation
 
 const Contacto = ({ id }) => {
-  return (
-   <Box
-         id={id} // Agrego el id para la navegación
-         sx={{
-           backgroundImage: "url(/images/contact_background.webp)",
-           backgroundSize: "cover",
-           backgroundPosition: "center",
-           minHeight: "100vh",
-           width: "100%",
-           height: "100%",
-           display: "flex",
-           flexDirection: "column",
-           justifyContent: "center",
-           alignItems: "center",
-           color: "white",
-           position: "relative",
-          //  backgroundPosition: "top"
-         }}
-       >
+  const { t } = useTranslation(); // Usa useTranslation para acceder a las traducciones
 
-      
-  
+  return (
+    <Box
+      id={id} // Agrego el id para la navegación
+      sx={{
+        backgroundImage: "url(/images/contact_background.webp)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "white",
+        position: "relative",
+      }}
+    >
       {/* Overlay oscuro */}
       <Box
         sx={{
@@ -39,8 +38,9 @@ const Contacto = ({ id }) => {
 
       {/* Título de la sección */}
       <Typography variant="h2" gutterBottom sx={{ zIndex: 2 }}>
-        Contáctanos
+        {t("contacto.title")} {/* Usa la traducción para "Contáctanos" */}
       </Typography>
+
       {/* Botón para enviar el correo */}
       <Button
         href="mailto:yoy.jaracas@gmail.com"
@@ -53,7 +53,8 @@ const Contacto = ({ id }) => {
           textTransform: "none",
         }}
       >
-        Envía un mail a Yoy Jara.
+        {t("contacto.button")}{" "}
+        {/* Usa la traducción para "Envía un mail a Yoy Jara" */}
       </Button>
     </Box>
   );

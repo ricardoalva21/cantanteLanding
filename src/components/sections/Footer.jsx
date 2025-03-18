@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Box, Typography, IconButton, Fab } from "@mui/material";
 import { Instagram, Facebook, Twitter } from "@mui/icons-material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import { useTranslation } from "react-i18next"; // Importa useTranslation
 
 const Footer = () => {
   const [showScroll, setShowScroll] = useState(false);
+  const { t } = useTranslation(); // Usa useTranslation para acceder a las traducciones
 
   // Mostrar botón cuando el usuario baja
   useEffect(() => {
@@ -60,9 +62,11 @@ const Footer = () => {
           <Twitter />
         </IconButton>
       </Box>
+
       {/* Derechos de autor */}
       <Typography variant="body2">
-        © {new Date().getFullYear()} Yoy Jara. Todos los derechos reservados.
+        {t("footer.copyright", { year: new Date().getFullYear() })}{" "}
+        {/* Pasa el año como parámetro */}
       </Typography>
 
       {/* Botón flotante para volver arriba */}
